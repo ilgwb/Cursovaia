@@ -1,0 +1,21 @@
+[ {
+  "number" : 1,
+  "name" : "Apple iPhone 15",
+  "category" : "Smartphones"
+}, {
+  "number" : 2,
+  "name" : "Samsung Galaxy S23",
+  "category" : "Smartphones"
+}, {
+  "number" : 3,
+  "name" : "Lenovo ThinkPad X1",
+  "category" : "Laptops"
+}, {
+  "number" : 4,
+  "name" : "Acer Nitro 5",
+  "category" : "Laptops"
+}, {
+  "number" : 6,
+  "name" : "JBL Tune 510BT",
+  "category" : "Headphones"
+} ]
