@@ -6,16 +6,16 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cursovaia3.HelloController">
   <tabs>
     <Tab text="Товар">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView editable="true" layoutX="166.0" layoutY="33.0" prefHeight="335.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="productTab" editable="true" layoutX="166.0" layoutY="33.0" onKeyReleased="#onProductTableKeyReleased" prefHeight="335.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="productNum" prefWidth="75.0" text="Номер" />
-                      <TableColumn fx:id="productProd" prefWidth="75.0" text="Товар" />
+                      <TableColumn fx:id="productName" prefWidth="75.0" text="Товар" />
                         <TableColumn fx:id="productCategory" prefWidth="75.0" text="Категорія" />
                     </columns>
                      <columnResizePolicy>
@@ -29,7 +29,7 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView editable="true" layoutX="183.0" layoutY="93.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="categoryTab" editable="true" layoutX="183.0" layoutY="93.0" onKeyReleased="#onCategoryTableKeyReleased" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="categoryNum" prefWidth="75.0" text="Номер" />
                       <TableColumn fx:id="categoryName" prefWidth="75.0" text="Назва" />

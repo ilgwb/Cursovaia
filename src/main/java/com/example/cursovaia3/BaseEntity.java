@@ -1,6 +1,6 @@
 package com.example.cursovaia3;
 
-public abstract class BaseEntity {
+public class BaseEntity {
     private int number;
     private String name;
 

@@ -19,27 +19,28 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class FileHandler<T extends BaseEntity>{
+public class FileHandler<T extends BaseEntity> {
+
     private final Path PATH;
+    private final Class<T> type;
     private final ObjectMapper MAPPER = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
-    public FileHandler(String path) throws IOException {
+    public FileHandler(String path, Class<T> type) throws IOException {
         this.PATH = Path.of(path);
-        if (Files.notExists(PATH)){
-            Files.createFile(PATH);
-        }
-
+        this.type = type;
+        if (Files.notExists(PATH)) Files.createFile(PATH);
     }
 
     public List<T> Read(){
-        try(BufferedReader reader = Files.newBufferedReader(PATH)){
-            return MAPPER.readValue(reader, new TypeReference<List<T>>() {
-            });
-        }
-        catch(Exception e){
-            return new ArrayList<T>();
+        try (BufferedReader reader = Files.newBufferedReader(PATH)){
+            return MAPPER.readValue(reader, MAPPER.getTypeFactory()
+                    .constructCollectionType(List.class, type));
+        } catch (Exception e){
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
+
     public void Write(T toAdd){
         try(BufferedWriter writer = Files.newBufferedWriter(PATH)) {
             List<T> allItems = Read();
@@ -61,4 +62,35 @@ public class FileHandler<T extends BaseEntity>{
 
         return allItems.stream().mapToInt(BaseEntity::getNumber).max().getAsInt();
     }
+    public void Update(T toUpdate){
+        List<T> allItems = Read();
+        for (int i = 0; i < allItems.size(); i++){
+            if (allItems.get(i).getNumber() == toUpdate.getNumber()){
+                allItems.set(i,toUpdate);
+                break;
+            }
+        }
+        try(BufferedWriter writer = Files.newBufferedWriter(PATH)) {
+            String json = MAPPER.writeValueAsString(allItems);
+            writer.write(json);
+        }
+        catch (Exception e){
+        }
+    }
+    public void Delete(int number){
+        List<T> allItems = Read();
+        for (int i = 0; i < allItems.size(); i++){
+            if (allItems.get(i).getNumber() == number){
+                allItems.remove(i);
+                break;
+            }
+        }
+        try(BufferedWriter writer = Files.newBufferedWriter(PATH)) {
+            String json = MAPPER.writeValueAsString(allItems);
+            writer.write(json);
+        }
+        catch (Exception e){
+        }
+    }
+
 }
