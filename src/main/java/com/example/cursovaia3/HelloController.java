@@ -2,6 +2,10 @@ package com.example.cursovaia3;
 
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -10,6 +14,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.skin.SplitPaneSkin;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
@@ -139,4 +145,15 @@ public class HelloController {
         }
     }
 
+    @FXML
+    private void onAddProductButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("popup-product.fxml"));
+        Parent root = loader.load();
+
+        Stage popup = new Stage();
+        popup.setScene(new Scene(root));
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.showAndWait();
+
+    }
 }
