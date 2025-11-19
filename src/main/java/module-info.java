@@ -8,6 +8,7 @@ module com.example.cursovaia3 {
     requires com.fasterxml.jackson.databind;
     requires jdk.compiler;
     requires jdk.jdi;
+    requires javafx.graphics;
 
     opens com.example.cursovaia3 to javafx.fxml;
     exports com.example.cursovaia3;

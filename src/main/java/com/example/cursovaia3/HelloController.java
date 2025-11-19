@@ -2,6 +2,10 @@ package com.example.cursovaia3;
 
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -10,6 +14,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.skin.SplitPaneSkin;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
@@ -67,6 +73,26 @@ public class HelloController {
         });
         productCategory.setOnEditCommit(e -> {
             e.getRowValue().setCategory(e.getNewValue());
+            List<Category> categories = categoryFileHandler.Read();
+            boolean plag = false;
+            for (Category category: categories){
+                if(category.getName().equals(e.getRowValue().getCategory())){
+                    plag = true;
+                    break;
+                }
+            }
+            if (plag == false){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Ті даун");
+                alert.setHeaderText("ряльна даун");
+                alert.show();
+                try {
+                    initialize();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                return;
+            }
                 productFileHandler.Update(e.getRowValue());
         });
 
@@ -138,5 +164,26 @@ public class HelloController {
             }
         }
     }
+    @FXML
+    private void onProductAddAction() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("popap.fxml"));
+        Parent root = loader.load();
+        Stage popup = new Stage();
+        popup.setScene(new Scene(root));
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.showAndWait();
+        initialize();
+    }
+    @FXML
+    private void onCategoryAddAction() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("popapa.fxml"));
+        Parent root = loader.load();
+        Stage popup = new Stage();
+        popup.setScene(new Scene(root));
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.showAndWait();
+        initialize();
+    }
+
 
 }

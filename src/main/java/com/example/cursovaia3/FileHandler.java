@@ -42,8 +42,8 @@ public class FileHandler<T extends BaseEntity> {
     }
 
     public void Write(T toAdd){
+        List<T> allItems = Read();
         try(BufferedWriter writer = Files.newBufferedWriter(PATH)) {
-            List<T> allItems = Read();
             toAdd.setNumber(GetLatestId(allItems) + 1);
             allItems.add(toAdd);
             String json = MAPPER.writeValueAsString(allItems);
