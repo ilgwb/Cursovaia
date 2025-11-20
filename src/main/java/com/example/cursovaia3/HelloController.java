@@ -1,6 +1,7 @@
 package com.example.cursovaia3;
 
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +20,10 @@ import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 public class HelloController {
     @FXML
@@ -47,24 +51,44 @@ public class HelloController {
         categoryTab.getItems().clear();
 
 
-        // Отвечают за распределение полей класса по колонкам
-
         categoryNum.setCellValueFactory(new PropertyValueFactory<>("number"));
         categoryName.setCellValueFactory(new PropertyValueFactory<>("name"));
         productCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         productNum.setCellValueFactory(new PropertyValueFactory<>("number"));
         productName.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        // Отвечает за то какой тип данных будет при изменении и как с ним обращаться
         categoryName.setCellFactory(TextFieldTableCell.forTableColumn());
         productName.setCellFactory(TextFieldTableCell.forTableColumn());
         productCategory.setCellFactory(TextFieldTableCell.forTableColumn());
 
-
-        // Отвечает за то что будет происходить когда пользователь изменит табличку
         categoryName.setOnEditCommit(e -> {
+            String oldName = e.getOldValue();
             e.getRowValue().setName(e.getNewValue());
                 categoryFileHandler.Update(e.getRowValue());
+            Task<List<Product>> getProduct = new Task<List<Product>>() {
+
+                @Override
+                protected List<Product> call() throws Exception {
+                    return productFileHandler.Read();
+                }
+            };
+            getProduct.setOnSucceeded(o -> {
+                List<Product> searchResult = new ArrayList<>();
+                for (Product product : getProduct.getValue()) {
+                    if (product.getCategory().equals(oldName)) {
+                        product.setCategory(e.getNewValue());
+                        searchResult.add(product);
+                    }
+                }
+                System.out.println(searchResult);
+                productFileHandler.Update(searchResult);
+                try {
+                    initialize();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            new Thread(getProduct).start();
         });
 
         productName.setOnEditCommit(e -> {
@@ -95,45 +119,26 @@ public class HelloController {
             }
                 productFileHandler.Update(e.getRowValue());
         });
-
-
-
-
-
-        // Создает задачу загрузки данных из файла
         Task<List<Product>> getProduct = new Task<List<Product>>() {
-            // Что будет выполняться в другом потоке и вернет список машин
+
             @Override
             protected List<Product> call() throws Exception {
                 return productFileHandler.Read();
             }
         };
-
-        // Говорю что делать после того как задача успешно завершится
         getProduct.setOnSucceeded(e -> {
-            // Обновляю таблицу
-            // getProduct.getValue() это возвращенный результат из задачи getProduct
-            // тоесть список машин
+
             productTab.getItems().addAll(getProduct.getValue());
         });
         Task<List<Category>> getCategory = new Task<List<Category>>() {
-            // Что будет выполняться в другом потоке и вернет список машин
             @Override
             protected List<Category> call() throws Exception {
                 return categoryFileHandler.Read();
             }
         };
-
-        // Говорю что делать после того как задача успешно завершится
         getCategory.setOnSucceeded(e -> {
-            // Обновляю таблицу
-            // getProduct.getValue() это возвращенный результат из задачи getProduct
-            // тоесть список машин
             categoryTab.getItems().addAll(getCategory.getValue());
-            System.out.println(getCategory.getValue());
         });
-
-        // Запускаю задачу
         new Thread(getProduct).start();
         new Thread(getCategory).start();
     }
@@ -157,10 +162,33 @@ public class HelloController {
     @FXML
     private void onCategoryTableKeyReleased(KeyEvent eventRemove) throws IOException {
         if(eventRemove.getCode() == KeyCode.DELETE){
-            int number = categoryTab.getSelectionModel().getSelectedItem().getNumber();
-            if(number != 0){
-                 categoryFileHandler.Delete(number);
-                 initialize();
+            Category category = categoryTab.getSelectionModel().getSelectedItem();
+            if(category != null){
+                 categoryFileHandler.Delete(category.getNumber());
+                Task<List<Product>> getProduct = new Task<List<Product>>() {
+
+                    @Override
+                    protected List<Product> call() throws Exception {
+                        return productFileHandler.Read();
+                    }
+                };
+                getProduct.setOnSucceeded(e -> {
+                    List<Integer> searchResult = new ArrayList<>();
+                    for (Product product: getProduct.getValue()){
+                        if (product.getCategory().equals( category.getName())){
+                            searchResult.add(product.getNumber());
+                        }
+                    }
+                    System.out.println(searchResult);
+                    productFileHandler.Delete(searchResult);
+                    try {
+                        initialize();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                });
+                new Thread(getProduct).start();
             }
         }
     }
@@ -169,7 +197,9 @@ public class HelloController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("popap.fxml"));
         Parent root = loader.load();
         Stage popup = new Stage();
-        popup.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        popup.setScene(scene);
+        scene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class).getResource("popap.css").toExternalForm());
         popup.initModality(Modality.APPLICATION_MODAL);
         popup.showAndWait();
         initialize();
@@ -179,11 +209,51 @@ public class HelloController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("popapa.fxml"));
         Parent root = loader.load();
         Stage popup = new Stage();
-        popup.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        popup.setScene(scene);
+        scene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class).getResource("popap.css").toExternalForm());
         popup.initModality(Modality.APPLICATION_MODAL);
         popup.showAndWait();
         initialize();
     }
 
+
+    public void onSearchButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("search.fxml"));
+        Parent root = loader.load();
+        Stage popup = new Stage();
+        Scene scene = new Scene(root);
+        popup.setScene(scene);
+        scene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class).getResource("popap.css").toExternalForm());
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.showAndWait();
+        SearchControler controler = loader.getController();
+        String searchText = controler.search.getText();
+        productTab.getItems().clear();
+        Task<List<Product>> getProduct = new Task<List<Product>>() {
+
+            @Override
+            protected List<Product> call() throws Exception {
+                return productFileHandler.Read();
+            }
+        };
+        getProduct.setOnSucceeded(e -> {
+            List<Product> searchResult = new ArrayList<>();
+            for (Product product: getProduct.getValue()){
+                if (product.getName().toLowerCase(Locale.ROOT).contains(searchText.toLowerCase(Locale.ROOT))){
+                    searchResult.add(product);
+                }
+                else if (product.getCategory().toLowerCase(Locale.ROOT).contains(searchText.toLowerCase(Locale.ROOT))){
+                    searchResult.add(product);
+                }
+            }
+            productTab.getItems().addAll(searchResult);
+        });
+        new Thread(getProduct).start();
+    }
+
+    public void onResetButtonClick(ActionEvent actionEvent) throws IOException {
+        initialize();
+    }
 
 }

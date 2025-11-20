@@ -1,13 +1,42 @@
-[ {
-  "number" : 1,
-  "name" : "Smartphones"
-}, {
-  "number" : 2,
-  "name" : "Laptops"
-}, {
-  "number" : 3,
-  "name" : "Headphones"
-}, {
-  "number" : 4,
-  "name" : "Холодильники"
-} ]
+[
+  {
+    "number": 1,
+    "name": "Молочні продукти"
+  },
+  {
+    "number": 2,
+    "name": "Овочі"
+  },
+  {
+    "number": 3,
+    "name": "Фрукти"
+  },
+  {
+    "number": 4,
+    "name": "Мʼясо та птиця"
+  },
+  {
+    "number": 5,
+    "name": "Хлібобулочні вироби"
+  },
+  {
+    "number": 6,
+    "name": "Напої"
+  },
+  {
+    "number": 7,
+    "name": "Бакалія"
+  },
+  {
+    "number": 8,
+    "name": "Солодощі"
+  },
+  {
+    "number": 9,
+    "name": "Крупи"
+  },
+  {
+    "number": 10,
+    "name": "Побутова хімія"
+  }
+]

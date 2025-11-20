@@ -1,33 +1,211 @@
-[ {
-  "number" : 1,
-  "name" : "Apple iPhone 15",
-  "category" : "Smartphones"
-}, {
-  "number" : 2,
-  "name" : "Samsung Galaxy S23",
-  "category" : "Smartphones"
-}, {
-  "number" : 3,
-  "name" : "Lenovo ThinkPad X1",
-  "category" : "Laptops"
-}, {
-  "number" : 4,
-  "name" : "Acer Nitro 5",
-  "category" : "Laptops"
-}, {
-  "number" : 6,
-  "name" : "JBL Tune 510BT",
-  "category" : "Headphones"
-}, {
-  "number" : 7,
-  "name" : "w[qeweq",
-  "category" : "Laptops"
-}, {
-  "number" : 8,
-  "name" : "picun f7",
-  "category" : "Headphones"
-}, {
-  "number" : 9,
-  "name" : "Писюн ф8",
-  "category" : "Холодильники"
-} ]
+[
+  {
+    "number": 1,
+    "name": "Молоко 2.5% «Галичина»",
+    "category": "Молочні продукти"
+  },
+  {
+    "number": 2,
+    "name": "Сир твердий «Гауда»",
+    "category": "Молочні продукти"
+  },
+  {
+    "number": 3,
+    "name": "Йогурт персиковий",
+    "category": "Молочні продукти"
+  },
+  {
+    "number": 4,
+    "name": "Сметана 20%",
+    "category": "Молочні продукти"
+  },
+
+  {
+    "number": 5,
+    "name": "Картопля молода",
+    "category": "Овочі"
+  },
+  {
+    "number": 6,
+    "name": "Морква свіжа",
+    "category": "Овочі"
+  },
+  {
+    "number": 7,
+    "name": "Огірки короткі",
+    "category": "Овочі"
+  },
+  {
+    "number": 8,
+    "name": "Помідори рожеві",
+    "category": "Овочі"
+  },
+
+  {
+    "number": 9,
+    "name": "Яблука сорт «Гала»",
+    "category": "Фрукти"
+  },
+  {
+    "number": 10,
+    "name": "Груша соковита",
+    "category": "Фрукти"
+  },
+  {
+    "number": 11,
+    "name": "Банани",
+    "category": "Фрукти"
+  },
+  {
+    "number": 12,
+    "name": "Апельсини",
+    "category": "Фрукти"
+  },
+
+  {
+    "number": 13,
+    "name": "Куряче філе",
+    "category": "Мʼясо та птиця"
+  },
+  {
+    "number": 14,
+    "name": "Свинина ошийок",
+    "category": "Мʼясо та птиця"
+  },
+  {
+    "number": 15,
+    "name": "Фарш курячий",
+    "category": "Мʼясо та птиця"
+  },
+  {
+    "number": 16,
+    "name": "Стегенця курячі",
+    "category": "Мʼясо та птиця"
+  },
+
+  {
+    "number": 17,
+    "name": "Хліб пшеничний",
+    "category": "Хлібобулочні вироби"
+  },
+  {
+    "number": 18,
+    "name": "Батон нарізний",
+    "category": "Хлібобулочні вироби"
+  },
+  {
+    "number": 19,
+    "name": "Булочки з кунжутом",
+    "category": "Хлібобулочні вироби"
+  },
+  {
+    "number": 20,
+    "name": "Круасани класичні",
+    "category": "Хлібобулочні вироби"
+  },
+
+  {
+    "number": 21,
+    "name": "Мінеральна вода негазована",
+    "category": "Напої"
+  },
+  {
+    "number": 22,
+    "name": "Сік яблучний прямого віджиму",
+    "category": "Напої"
+  },
+  {
+    "number": 23,
+    "name": "Квас домашній",
+    "category": "Напої"
+  },
+  {
+    "number": 24,
+    "name": "Чай чорний цейлонський",
+    "category": "Напої"
+  },
+
+  {
+    "number": 25,
+    "name": "Макарони «Пірʼя»",
+    "category": "Бакалія"
+  },
+  {
+    "number": 26,
+    "name": "Олія соняшникова",
+    "category": "Бакалія"
+  },
+  {
+    "number": 27,
+    "name": "Консервований горошок",
+    "category": "Бакалія"
+  },
+  {
+    "number": 28,
+    "name": "Кукурудза консервована",
+    "category": "Бакалія"
+  },
+
+  {
+    "number": 29,
+    "name": "Шоколад чорний 70%",
+    "category": "Солодощі"
+  },
+  {
+    "number": 30,
+    "name": "Цукерки карамельні",
+    "category": "Солодощі"
+  },
+  {
+    "number": 31,
+    "name": "Вафлі шоколадні",
+    "category": "Солодощі"
+  },
+  {
+    "number": 32,
+    "name": "Печиво вівсяне",
+    "category": "Солодощі"
+  },
+
+  {
+    "number": 33,
+    "name": "Гречка ядриця",
+    "category": "Крупи"
+  },
+  {
+    "number": 34,
+    "name": "Рис довгозернистий",
+    "category": "Крупи"
+  },
+  {
+    "number": 35,
+    "name": "Кукурудзяна крупа",
+    "category": "Крупи"
+  },
+  {
+    "number": 36,
+    "name": "Вівсяні пластівці",
+    "category": "Крупи"
+  },
+
+  {
+    "number": 37,
+    "name": "Пральний порошок «Універсальний»",
+    "category": "Побутова хімія"
+  },
+  {
+    "number": 38,
+    "name": "Гель для прання",
+    "category": "Побутова хімія"
+  },
+  {
+    "number": 39,
+    "name": "Миючий засіб для посуду",
+    "category": "Побутова хімія"
+  },
+  {
+    "number": 40,
+    "name": "Засіб для чищення ванни",
+    "category": "Побутова хімія"
+  }
+]

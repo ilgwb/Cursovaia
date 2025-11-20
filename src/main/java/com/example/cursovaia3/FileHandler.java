@@ -85,6 +85,39 @@ public class FileHandler<T extends BaseEntity> {
                 break;
             }
         }
+
+        try(BufferedWriter writer = Files.newBufferedWriter(PATH)) {
+            String json = MAPPER.writeValueAsString(allItems);
+            writer.write(json);
+        }
+        catch (Exception e){
+        }
+    }
+    public void Delete(List<Integer> number){
+        System.out.println(number);
+        List<T> allItems = Read();
+        for (int i = allItems.size() - 1; i >= 0; i--){
+            if (number.contains(allItems.get(i).getNumber())){
+                allItems.remove(i);
+            }
+        }
+
+
+        try(BufferedWriter writer = Files.newBufferedWriter(PATH)) {
+            String json = MAPPER.writeValueAsString(allItems);
+            writer.write(json);
+        }
+        catch (Exception e){
+        }
+    }
+    public void Update(List<T> toUpdate){
+        List<T> allItems = Read();
+        for (int i = 0; i < allItems.size(); i++){
+            var updatedEntite = toUpdate.indexOf(allItems.get(i));
+            if (updatedEntite != -1){
+                allItems.set(i,toUpdate.get(updatedEntite));
+            }
+        }
         try(BufferedWriter writer = Files.newBufferedWriter(PATH)) {
             String json = MAPPER.writeValueAsString(allItems);
             writer.write(json);

@@ -53,7 +53,7 @@
 
    </center>
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar style="-fx-background-color: #12121212;" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Додати">
             <items>
@@ -63,12 +63,8 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Пошук">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#onSearchButtonClick" text="Пошук" />
+                  <MenuItem mnemonicParsing="false" onAction="#onResetButtonClick" text="Скинути" />
             </items>
           </Menu>
         </menus>

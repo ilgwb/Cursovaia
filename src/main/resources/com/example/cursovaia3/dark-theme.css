@@ -1,0 +1,203 @@
+/* ============================================================
+   ГЛОБАЛЬНЫЙ ФОН
+   ============================================================ */
+.root {
+    -fx-font-family: "Segoe UI", "Roboto", "sans-serif";
+    -fx-background-color: #121212;
+    -fx-text-fill: #eeeeee;
+}
+
+.border-pane, .anchor-pane {
+    -fx-background-color: #121212;
+}
+
+/* ============================================================
+   MENU BAR — полностью тёмный
+   ============================================================ */
+.menu-bar {
+    -fx-background-color: #101010;
+    -fx-padding: 4 8;
+    -fx-border-color: #202020;
+    -fx-border-width: 0 0 1 0;
+}
+
+.menu-bar .label {
+    -fx-text-fill: #e7e7e7;
+    -fx-font-size: 13px;
+}
+
+.menu-button, .menu {
+    -fx-background-color: transparent;
+}
+
+.menu-button:hover, .menu:hover {
+    -fx-background-color: #1c1c1c;
+}
+
+/* Выпадающее меню */
+.context-menu {
+    -fx-background-color: #181818;
+    -fx-border-color: #303030;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 4);
+}
+
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 6 14;
+}
+
+.menu-item .label {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-size: 13px;
+}
+
+.menu-item:hover {
+    -fx-background-color: #262626;
+}
+
+.menu-item:disabled .label {
+    -fx-text-fill: #555555;
+}
+
+/* ============================================================
+   TAB PANE — полностью тёмный + исправлена белая полоса
+   ============================================================ */
+
+.tab-pane {
+    -fx-background-color: #121212;
+}
+
+/* ГЛАВНОЕ: убираем белую полоску */
+.tab-pane .tab-header-area {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: #101010;
+    -fx-border-color: #202020;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* Region где лежат сами табы */
+.tab-pane .tab-header-area .headers-region {
+    -fx-background-color: #101010;
+}
+
+/* Сами вкладки */
+.tab-pane .tab {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4 4 0 0;
+    -fx-padding: 6 14;
+}
+
+.tab-pane .tab .tab-label {
+    -fx-text-fill: #bbbbbb;
+}
+
+/* Hover */
+.tab-pane .tab:hover {
+    -fx-background-color: #1c1c1c;
+}
+
+/* Выбранная вкладка */
+.tab-pane .tab:selected {
+    -fx-background-color: #263238;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+/* Контент вкладки */
+.tab-pane .tab-content-area {
+    -fx-background-color: #121212;
+    -fx-padding: 8;
+}
+
+/* ============================================================
+   TABLE VIEW — тёмная таблица
+   ============================================================ */
+
+.table-view {
+    -fx-background-color: #121212;
+    -fx-control-inner-background: #121212;
+    -fx-padding: 8;
+    -fx-table-cell-border-color: #252525;
+    -fx-table-header-border-color: #252525;
+}
+
+/* Заголовки колонок */
+.table-view .column-header-background {
+    -fx-background-color: #181818;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: #181818;
+    -fx-border-color: transparent transparent #252525 transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-weight: bold;
+}
+
+/* Ряды таблицы */
+.table-row-cell {
+    -fx-background-color: #141414;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #161616;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #1e1e1e;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #2962ff;
+    -fx-text-fill: #ffffff;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: #ffffff;
+}
+
+/* Ячейки */
+.table-cell {
+    -fx-text-fill: #e0e0e0;
+    -fx-padding: 4 8;
+}
+
+/* ============================================================
+   SCROLLBARS
+   ============================================================ */
+.scroll-bar {
+    -fx-background-color: #121212;
+}
+
+.scroll-bar .track {
+    -fx-background-color: #181818;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #303030;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #404040;
+}
+
+
+/* ============================================================
+   FOCUS COLORS
+   ============================================================ */
+:focused {
+    -fx-focus-color: #2962ff;
+    -fx-faint-focus-color: rgba(41,98,255,0.3);
+}
+
